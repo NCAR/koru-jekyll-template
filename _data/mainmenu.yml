@@ -1,6 +1,9 @@
 menu:
   - title: Layouts
     url: /jekyll-koru-test/pages/layouts.html
+    submenu:
+      - title: Submenu Item
+        url: /jekyll-koru-test/pages/submenu.html
   - title: Updating the Main Menu
     url: /jekyll-koru-test/pages/main-menu.html
   - title: Local Development
