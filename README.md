@@ -47,6 +47,10 @@ If you are using a relative path to a page in the repository you will need to in
 
 When developing locally, you will need to remove the repository name from the URL.
 
+## Updating Koru Base
+
+Go to the _config.yml file and update the `remote_theme: ncar/koru-jekyll@` to the latest version.
+
 ## Local Development
 
 Run `docker-compose up --build` to (re)build the jekyll images and run the container.
