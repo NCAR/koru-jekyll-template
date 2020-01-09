@@ -44,7 +44,7 @@ First, decide where to house the [publishing source](https://help.github.com/en/
     * Click the "Settings" tab in the top right
     * Scroll down to the "GitHub Pages" section
     * For Source, choose "master branch /docs folder" (learn more about [publishing sources](https://help.github.com/en/github/working-with-github-pages/about-github-pages#publishing-sources-for-github-pages-sites))
-    * Ignore the "Choose a theme" button. Your theme (Koru-Jekyll) is configured in the _config.yml file of your new repo
+    * Ignore the "Choose a theme" button. Your theme (Koru-Jekyll) is configured in the docs/_config.yml file of your repo
     * Your new site should now be published at https://ncar.github.io/your-repo-name/    
 
 ## Creating Content
@@ -110,7 +110,7 @@ There is no "preview" facility in GitHub Pages. You will need to stand up your s
  
 Run `docker-compose up --build` to (re)build the jekyll images and run the container.
 
-This will create a container and mount your current repository directory on the container. The container runs `jekyll serve` and creates a local server environment in the container. Once the container is up and running, a local version of your site will be available at http://localhost:4000
+This will create a container and mount your current repository directory on the container. The container runs `jekyll serve` and creates a local server environment in the container. Once the container is up and running, a local version of your site will be available at http://localhost:4000.
 
 Any changes you make to your local repository will be made to the container. To see updates you will need to refresh your browser.
 
