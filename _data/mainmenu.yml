@@ -1,12 +1,12 @@
 menu:
   - title: Layouts
-    url: /jekyll-koru-test/pages/layouts.html
+    url: /koru-jekyll-template/pages/layouts.html
     submenu:
       - title: Submenu Item
-        url: /jekyll-koru-test/pages/submenu.html
+        url: /koru-jekyll-template/pages/submenu.html
   - title: Updating the Main Menu
-    url: /jekyll-koru-test/pages/main-menu.html
+    url: /koru-jekyll-template/pages/main-menu.html
   - title: Local Development
-    url: /jekyll-koru-test/pages/local-development.html
+    url: /koru-jekyll-template/pages/local-development.html
   - title: Support
-    url: /jekyll-koru-test/pages/support.html
+    url: /koru-jekyll-template/pages/support.html

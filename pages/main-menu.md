@@ -13,6 +13,6 @@ menu:
     url: /pages/documentation.html
 ```
 
-If you are using a relative path to a page in the repository you will need to include the repository name in the `url:` value. This would look like: `url: /jekyll-koru-test/pages/main-menu.html`
+If you are using a relative path to a page in the repository you will need to include the repository name in the `url:` value. This would look like: `url: /koru-jekyll-template/pages/main-menu.html`
 
 When developing locally, you will need to remove the repository name from the URL.
