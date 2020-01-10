@@ -4,6 +4,8 @@ This repository is an example repo that any NCAR or UCAR staff or project can us
 
 Koru-Jekyll Template uses the [Koru-Jekyll](https://github.com/NCAR/koru-jekyll) theme, which is based on UCAR/NCAR's custom 'Koru' design, utilizing the same templates, colors, fonts, etc as the main [NCAR](https://ncar.ucar.edu) and [UCAR](https://www.ucar.edu) Umbrella sites. Koru-Jekyll is implemented as a [Jekyll](https://jekyllrb.com/) theme. Jekyll is a static site generator [built in to GitHub Pages](https://help.github.com/en/github/working-with-github-pages/about-github-pages-and-jekyll) to allow you to generate HTML and static assets from Markdown files. 
 
+View an [example GitHub Pages site generated from this repo](https://ncar.github.io/koru-jekyll-template/).
+
 Koru-Jekyll and Koru-Jekyll Template are developed and supported by SWES in CISL.
 
 ## Using Koru-Jekyll Template for a Static Website
