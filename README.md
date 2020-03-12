@@ -106,6 +106,16 @@ If you are using a relative path to a page in the repository you will need to in
 
 When developing locally, you will need to remove the repository name from the URL.
 
+## Google Analytics
+
+To add Google Analytics code to your site:
+1. Log into Google Analytics
+2. If you have an existing site, go to your site's Admin dashboard
+3. Under the "Property" column, click on "Tracking Info"
+4. Click on "Tracking Code"
+5. Copy your "Tracking ID"
+5. In your Jekyll _config.yml file, add "analytics: *tracking-id*"
+
 ## Local Development and Site Preview
 
 There is no "preview" facility in GitHub Pages. You will need to stand up your site locally instead, and a Docker container is provided for this in the repo. You will need [Docker installed](https://docs.docker.com/) on your local computer.
