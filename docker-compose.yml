@@ -10,4 +10,4 @@ services:
     volumes:
       - ./:/project
     ports:
-      - "4000:4000"
+      - "4004:4004"
