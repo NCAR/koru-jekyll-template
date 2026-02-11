@@ -25,8 +25,8 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-bundle-{{ checksum "Gemfile.lock" }}
-            - v1-bundle-
+            - v2-rubydeps-{{ checksum "Gemfile.lock" }}
+            - v2-rubydeps-
 
       - run:
           name: "Build site via docker-compose (service: web)"
@@ -41,29 +41,30 @@ jobs:
             fi
 
             UIDGID="$(id -u):$(id -g)"
+            ENV_VARS=(-e HOME=/project -e GEM_HOME=/project/vendor/gems -e GEM_PATH=/project/vendor/gems)
 
-            rm -rf vendor/bundle _site .local
-            mkdir -p vendor/bundle
-            mkdir -p .local/share/gem/ruby/3.1.0/cache
+            rm -rf vendor/bundle vendor/gems _site .bundle
+            mkdir -p vendor/bundle vendor/gems
 
             $COMPOSE build web
 
-            $COMPOSE run --rm --no-deps --user "$UIDGID" -e HOME=/project web gem install bundler -v 2.5.6 --no-document
+            $COMPOSE run --rm --no-deps --user "$UIDGID" "${ENV_VARS[@]}" web gem install bundler -v 2.5.6 --no-document
 
-            $COMPOSE run --rm --no-deps --user "$UIDGID" -e HOME=/project web bundle _2.5.6_ config set --local path "vendor/bundle"
-            $COMPOSE run --rm --no-deps --user "$UIDGID" -e HOME=/project web bundle _2.5.6_ config set --local deployment "true"
-            $COMPOSE run --rm --no-deps --user "$UIDGID" -e HOME=/project web bundle _2.5.6_ install --jobs 4 --retry 3
+            $COMPOSE run --rm --no-deps --user "$UIDGID" "${ENV_VARS[@]}" web bundle _2.5.6_ config set --local path "vendor/bundle"
+            $COMPOSE run --rm --no-deps --user "$UIDGID" "${ENV_VARS[@]}" web bundle _2.5.6_ config set --local deployment "true"
+            $COMPOSE run --rm --no-deps --user "$UIDGID" "${ENV_VARS[@]}" web bundle _2.5.6_ install --jobs 4 --retry 3
 
-            $COMPOSE run --rm --no-deps --user "$UIDGID" -e HOME=/project web bundle _2.5.6_ exec jekyll clean
-            $COMPOSE run --rm --no-deps --user "$UIDGID" -e HOME=/project web bundle _2.5.6_ exec jekyll build --baseurl "/koru-jekyll-template"
+            $COMPOSE run --rm --no-deps --user "$UIDGID" "${ENV_VARS[@]}" web bundle _2.5.6_ exec jekyll clean
+            $COMPOSE run --rm --no-deps --user "$UIDGID" "${ENV_VARS[@]}" web bundle _2.5.6_ exec jekyll build --baseurl "/koru-jekyll-template"
 
             test -d _site
             test -f _site/index.html
 
       - save_cache:
-          key: v1-bundle-{{ checksum "Gemfile.lock" }}
+          key: v2-rubydeps-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
+            - vendor/gems
 
       - run:
           name: Configure git + authenticated origin
