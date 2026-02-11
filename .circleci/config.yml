@@ -42,19 +42,20 @@ jobs:
 
             UIDGID="$(id -u):$(id -g)"
 
+            rm -rf vendor/bundle _site .local
+            mkdir -p vendor/bundle
+            mkdir -p .local/share/gem/ruby/3.1.0/cache
+
             $COMPOSE build web
 
-            rm -rf vendor/bundle _site
-            mkdir -p vendor/bundle
+            $COMPOSE run --rm --no-deps --user "$UIDGID" -e HOME=/project web gem install bundler -v 2.5.6 --no-document
 
-            $COMPOSE run --rm --no-deps --user "$UIDGID" web gem install bundler -v 2.5.6
+            $COMPOSE run --rm --no-deps --user "$UIDGID" -e HOME=/project web bundle _2.5.6_ config set --local path "vendor/bundle"
+            $COMPOSE run --rm --no-deps --user "$UIDGID" -e HOME=/project web bundle _2.5.6_ config set --local deployment "true"
+            $COMPOSE run --rm --no-deps --user "$UIDGID" -e HOME=/project web bundle _2.5.6_ install --jobs 4 --retry 3
 
-            $COMPOSE run --rm --no-deps --user "$UIDGID" web bundle _2.5.6_ config set --local path "vendor/bundle"
-            $COMPOSE run --rm --no-deps --user "$UIDGID" web bundle _2.5.6_ config set --local deployment "true"
-            $COMPOSE run --rm --no-deps --user "$UIDGID" web bundle _2.5.6_ install --jobs 4 --retry 3
-
-            $COMPOSE run --rm --no-deps --user "$UIDGID" web bundle _2.5.6_ exec jekyll clean
-            $COMPOSE run --rm --no-deps --user "$UIDGID" web bundle _2.5.6_ exec jekyll build --baseurl "/koru-jekyll-template"
+            $COMPOSE run --rm --no-deps --user "$UIDGID" -e HOME=/project web bundle _2.5.6_ exec jekyll clean
+            $COMPOSE run --rm --no-deps --user "$UIDGID" -e HOME=/project web bundle _2.5.6_ exec jekyll build --baseurl "/koru-jekyll-template"
 
             test -d _site
             test -f _site/index.html
