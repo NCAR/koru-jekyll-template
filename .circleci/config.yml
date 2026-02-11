@@ -80,4 +80,30 @@ jobs:
             rm -rf .worktree-gh-pages
             mkdir -p .worktree-gh-pages
 
-            if git show-ref --verify
+            if git show-ref --verify --quiet refs/remotes/origin/gh-pages; then
+              git worktree add .worktree-gh-pages origin/gh-pages
+            else
+              git worktree add -B gh-pages .worktree-gh-pages
+              (cd .worktree-gh-pages && git checkout --orphan gh-pages && git rm -rf . || true)
+            fi
+
+            rsync -a --delete _site/ .worktree-gh-pages/
+            cd .worktree-gh-pages
+            touch .nojekyll
+
+            if git status --porcelain | grep -q .; then
+              git add -A
+              git commit -m "Deploy to GitHub Pages [skip-ci]"
+              git push origin gh-pages
+            else
+              echo "No changes to deploy."
+            fi
+
+workflows:
+  deploy:
+    jobs:
+      - build-and-deploy-gh-pages:
+          context: web-modernization
+          filters:
+            branches:
+              only: master
