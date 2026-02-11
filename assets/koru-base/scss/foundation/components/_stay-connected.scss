@@ -1,0 +1,47 @@
+@use "sass:map";
+
+.stay-connected {
+  background: map.get($shared-colors, 'space-blue');
+  padding: 20px;
+
+  > div {
+    height: 100%;
+  }
+
+  a {
+    &:hover {
+      i {
+        color: map-get($shared-colors, 'space-blue');
+      }
+    }
+  }
+
+  h5 {
+    color: map-get($shared-colors, 'yellow');
+  }
+
+  .newsletter-signup {
+    margin: auto;
+    width: 80%;
+
+    form {
+      margin: 0;
+    }
+  }
+
+  @media only screen and (min-width: map-get($custom-breakpoints, 'mlarge')) {
+    h5 {
+      margin-top: 0;
+    }
+
+    .newsletter-signup {
+      width: 100%;
+    }
+  }
+
+  @media only screen and (min-width: map-get($custom-breakpoints, 'xlarge')) {
+    .newsletter-signup {
+      width: 80%;
+    }
+  }
+}

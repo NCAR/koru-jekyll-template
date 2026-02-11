@@ -1,0 +1,83 @@
+.home-primary-cta {
+  margin-top: -30px;
+
+  //some ugly hacks to reuse the featured-sections component on the home page
+  &.panel {
+    padding: 0;
+  }
+
+  .cell {
+    &.featured-section {
+      @include xy-cell(4);
+      box-shadow: 0 0 5px 2px rgba(map-get($shared-colors, 'black'), .25);
+      min-height: 105px;
+    }
+
+    &.small-11 {
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (min-width: map-get($custom-breakpoints, 'medium')) {
+  .home-primary-cta {
+    margin-top: -60px;
+
+    .cell {
+      &.featured-section {
+        @include xy-cell(4, $breakpoint: 'medium');
+        min-height: 135px;
+      }
+
+      &.small-11 {
+        @include xy-cell(11)
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: map-get($custom-breakpoints, 'mlarge')) {
+  .home-primary-cta {
+    .cell {
+      &.featured-section {
+        min-height: 200px;
+      }
+
+      &.small-11 {
+        @include xy-cell(10)
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: map-get($custom-breakpoints, 'large')) {
+  .home-primary-cta {
+    .cell {
+      &.featured-section {
+        @include xy-cell(4, $breakpoint: 'large');
+
+        i {
+          font-size: map-get($font-sizes, 'xxxxxxxlarge');
+        }
+      }
+
+      &.small-11 {
+        @include xy-cell(9)
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: map-get($custom-breakpoints, 'xlarge')) {
+  .home-primary-cta {
+    .cell {
+      &.featured-section {
+        @include xy-cell(4, $breakpoint: 'xlarge');
+      }
+
+      &.small-11 {
+        @include xy-cell(6)
+      }
+    }
+  }
+}

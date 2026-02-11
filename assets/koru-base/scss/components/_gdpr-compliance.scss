@@ -1,0 +1,25 @@
+.eu-cookie-compliance-message {
+  max-width: 80%;
+}
+
+.eu-cookie-compliance-content {
+  padding: 1rem;
+}
+
+.eu-cookie-compliance-default-button {
+  background: none;
+  border: 3px solid map-get($shared-colors, 'white');
+  box-shadow: none;
+  color: map-get($shared-colors, 'white');
+  font-family: map-get($font-families, 'default');
+  font-size: map-get($font-sizes, 'small');
+  margin-top: 10px;
+  padding: 7px 10px;
+  text-shadow: none;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: map-get($shared-colors, 'white');
+    color: map-get($shared-colors, 'cool-blue');
+  }
+}

@@ -1,0 +1,31 @@
+.callout {
+  &.alert {
+    color: map-get($shared-colors, 'light-gray');
+
+    a {
+      &:link {
+        color: map-get($shared-colors, 'warning');
+      }
+    }
+
+    .close-button {
+      color: map-get($shared-colors, 'white');
+    }
+  }
+}
+
+.alert-box {
+  font-size: 1.125rem;
+  margin: auto;
+  max-width: 85rem;
+
+  a {
+    font-weight: map-get($font-weights, 'bold');
+    text-decoration: underline;
+  }
+}
+
+.highlighted {
+  color: map-get($shared-colors, 'alert');
+  font-weight: map-get($font-weights, 'bold');
+}

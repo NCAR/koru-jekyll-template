@@ -1,0 +1,9 @@
+@each $shade, $hex in $shared-colors {
+  .bg-#{$shade} {
+    background-color: $hex;
+  }
+
+  .text-#{$shade} {
+    color: $hex;
+  }
+}

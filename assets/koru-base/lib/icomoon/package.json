@@ -1,0 +1,14 @@
+{
+  "name": "@ncar/icomoon",
+  "version": "1.0.21",
+  "description": "NPM package of custom icomoon icons.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ncar/icomoon.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "homepage": "https://github.com/NCAR/icomoon#readme",
+  "license": "UNLICENSED"
+}

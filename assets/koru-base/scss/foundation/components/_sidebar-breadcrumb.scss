@@ -1,0 +1,129 @@
+@use "sass:map";
+
+.sidebar-breadcrumb {
+  @include uppercase;
+
+  background-color: map.get($shared-colors, 'space-blue');
+  font-size: map.get($font-sizes, 'xsmall');
+  font-weight: map.get($font-weights, 'semi-bold');
+  letter-spacing: .06rem;
+  padding: 40px 0;
+
+  a {
+    color: map.get($shared-colors, 'light-gray');
+
+    &:link,
+    &:visited,
+    &:active {
+      color: map.get($shared-colors, 'light-gray');
+    }
+  }
+
+  span {
+    line-height: 1.35;
+  }
+
+  li {
+    a {
+      padding: 5px 20px 5px 45px;
+      position: relative;
+
+      &:hover {
+        i {
+          &::before {
+            @include font-awesome;
+            content: '\f140';
+          }
+        }
+      }
+
+      i {
+        left: 20px;
+        padding-top: 6px;
+        position: absolute;
+        top: 0;
+        width: 20px;
+      }
+    }
+
+    &.active {
+      @include uppercase;
+
+      > a {
+        color: map.get($shared-colors, 'space-blue');
+      }
+    }
+
+    &:not(:first-child) {
+      ul {
+        li {
+          a {
+            padding-left: 70px;
+
+            i {
+              font-size: map.get($font-sizes, 'xxxxsmall');
+              left: 45px;
+              padding-top: 10px;
+            }
+
+            &:hover {
+              i {
+                font-size: map.get($font-sizes, 'default');
+                left: 42px;
+                padding-top: 6px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  ul {
+    ul {
+      list-style-type: none;
+      margin-left: 0;
+      padding-left: 0;
+
+      ul {
+        display: none;
+      }
+    }
+  }
+
+  .home {
+    padding: 5px 20px 5px 45px;
+    position: relative;
+
+    i {
+      left: 20px;
+      padding-top: 6px;
+      position: absolute;
+      top: 0;
+      width: 20px;
+    }
+
+    &:hover {
+      i {
+        &::before {
+          @include font-awesome;
+          content: '\f140';
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: map.get($custom-breakpoints, 'medium')) {
+  .sidebar-breadcrumb {
+    li {
+      &.active {
+        > a {
+          &::before {
+            @include flex;
+          }
+        }
+      }
+    }
+  }
+}

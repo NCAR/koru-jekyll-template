@@ -1,0 +1,120 @@
+// Breakpoints
+$custom-breakpoints: (
+  'small': 0,
+  'medium': 40rem,
+  'mlarge': 56.25rem,
+  'large': 64rem,
+  'xlarge': 78.75rem,
+  'xxlarge': 90rem
+);
+
+// Font styles
+$font-families: (
+  'default': (Poppins, sans-serif),
+  'icons': ("Font Awesome 6 Free")
+);
+
+$font-weights: (
+  'regular': 400,
+  'semi-bold': 600,
+  'bold': 700,
+);
+
+$font-sizes: (
+  'xxxxsmall': .6875rem,
+  'xxxsmall': .75rem,
+  'xxsmall': .8125rem,
+  'xsmall': .875rem,
+  'small': .9375rem,
+  'default': 1rem,
+  'medium': 1.1875rem,
+  'large': 1.25rem,
+  'xlarge': 1.5rem,
+  'xxlarge': 1.75rem,
+  'xxxlarge': 2rem, // used once in the dropdown menu
+  'xxxxlarge': 2.25rem,
+  'xxxxxlarge': 2.5rem, // used once for news article h1
+  'xxxxxxlarge': 3rem,
+  'xxxxxxxlarge': 4rem,
+  'xxxxxxxxlarge': 4.6875rem, // used once for banner h2
+);
+
+$body-font-large: (
+  'small': (
+    'font-size': map-get($font-sizes, 'large'),
+    'line-height': 1.3
+  ),
+  'mlarge': (
+    'font-size': map-get($font-sizes, 'xlarge')
+  ),
+  'xlarge': (
+    'font-size':  map-get($font-sizes, 'xxlarge')
+  )
+);
+
+$header-styles: (
+  'small': (
+    'h1': ('font-size': map-get($font-sizes, 'xxlarge'), 'font-weight': 700),
+    'h2': ('font-size': map-get($font-sizes, 'xxlarge'), 'font-weight': 600),
+    'h3': ('font-size': map-get($font-sizes, 'xxlarge'), 'font-weight': 700),
+    'h4': ('font-size': map-get($font-sizes, 'xxlarge'), 'font-weight': 600),
+    'h5': ('font-size': map-get($font-sizes, 'large'), 'font-weight': 600),
+    'h6': ('font-size': map-get($font-sizes, 'large'), 'font-weight': 600)
+  ),
+  'medium': (
+    'h1': ('font-size': map-get($font-sizes, 'xxxxlarge')),
+    'h2': ('font-size': map-get($font-sizes, 'xxxxlarge')),
+    'h3': ('font-size': map-get($font-sizes, 'xxxxlarge'))
+  ),
+  'mlarge': (
+    'h1': ('font-size': map-get($font-sizes, 'xxxxxxlarge')),
+    'h2': ('font-size': map-get($font-sizes, 'xxxxxxlarge')),
+  )
+);
+
+// Colors
+$theme-colors: (
+  'ncar': (
+    'base': #0057c2,
+    'base-33': #6b8cce,
+    'base-66': #adc2e6,
+    'light': #42c0ff,
+    'light-33': #86d3fc,
+    'light-66': #bfe5f9
+  ),
+  'ucar': (
+    'base': #00818f,
+    'base-33': #00a2b4,
+    'base-66': #71c0cb,
+    'light': #34e1f4,
+    'light-33': #86e8f5,
+    'light-66': #c0f0f5
+  ),
+  'news': (
+    'base': #00357a,
+    'base-33': #5a77a6,
+    'base-66': #a8b7ce,
+    'light': #011837,
+    'light-33': #556379,
+    'light-66': #a5adb7
+  )
+);
+
+$shared-colors: (
+  'space-blue': #011837,
+  'space-blue-33': #556379,
+  'space-blue-66': #a5adb7,
+  'blue': #00357a,
+  'blue-33': #5a77a6,
+  'blue-66': #a8b7ce,
+  'orange': #faa119,
+  'orange-33': #fabe72,
+  'orange-66': #f8dbB5,
+  'yellow': #fdd509,
+  'yellow-33': #fbe174,
+  'yellow-66': #f8ebb7,
+  'red': #FF1F1F,
+  'light-gray': #f6f7f6,
+  'white': #fff,
+  'black': #0a0a0a,
+);

@@ -1,0 +1,63 @@
+.person {
+  margin-bottom: map-get($font-sizes, 'xxxxxxlarge');
+  padding-bottom: map-get($font-sizes, 'xxxxxxlarge');
+
+  &:hover {
+    .post-image {
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid map-get($shared-colors, 'light-gray');
+  }
+
+  h1 {
+    margin: 0;
+  }
+
+  h3 {
+    font-size: map-get($font-sizes, 'xxlarge');
+    letter-spacing: 0;
+    margin: 0;
+    text-transform: capitalize;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  img {
+    margin: 0;
+  }
+
+  .photo + .information {
+    padding-left: map-get($font-sizes, 'xxlarge');
+  }
+
+  .post-image {
+    display: inline-flex;
+    height: 100%;
+    position: relative;
+
+    &::before {
+      @include pseudo-element;
+      border-style: solid;
+      border-width: 14px;
+      height: 100%;
+      opacity: 0;
+      transition: 200ms ease-in-out;
+      width: 100%;
+    }
+  }
+}
+
+.personal-wrapper {
+  margin-bottom: map-get($font-sizes, 'large');
+}

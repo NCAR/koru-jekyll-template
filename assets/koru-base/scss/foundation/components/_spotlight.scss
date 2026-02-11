@@ -1,0 +1,60 @@
+a {
+  &.spotlight {
+    &:hover {
+      background-blend-mode: normal;
+    }
+  }
+}
+
+.spotlight {
+  background-blend-mode: multiply;
+  background-color: map-get($shared-colors, 'light-gray');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 40px;
+  position: relative;
+
+  h4 {
+    color: map-get($shared-colors, 'yellow');
+    font-size: map-get($font-sizes, 'large');
+    margin-bottom: 0;
+  }
+
+  h5 {
+    color: map-get($shared-colors, 'white');
+    font-size: map-get($font-sizes, 'xxlarge');
+  }
+
+  h4,
+  h5 {
+    @include text-shadow(rgba(map-get($shared-colors, 'black'), .5));
+    font-weight: map-get($font-weights, 'bold');
+  }
+
+  .inner {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: map-get($custom-breakpoints, 'medium')) {
+  .spotlight {
+    h5 {
+      font-size: map-get($font-sizes, 'xxxxlarge');
+    }
+  }
+}
+
+@media only screen and (min-width: map-get($custom-breakpoints, 'mlarge')) {
+  .spotlight-wrapper {
+    margin-bottom: 3rem;
+  }
+
+  .spotlight {
+    height: 100%;
+
+    h5 {
+      font-size: map-get($font-sizes, 'xxxxxxlarge');
+    }
+  }
+}

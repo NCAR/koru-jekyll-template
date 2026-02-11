@@ -1,0 +1,85 @@
+header button.fa-solid {
+  padding-left: 0.2rem;
+  padding-right: 0;
+}
+
+.acronym-wrapper {
+  margin: 0;
+}
+
+.top-bar {
+  background-color: #fff;
+}
+.top-bar .top-bar-title {
+  display: flex;
+}
+
+.top-bar-title {
+  margin: 0;
+}
+
+.logo-wrapper h1 {
+  font-size: 2rem;
+  line-height: 0.8;
+}
+.logo-wrapper h2 {
+  line-height: 0;
+  margin: 0 0.5rem 0 0;
+  padding-right: 0.5rem;
+}
+
+.main-nav .grid-x {
+  justify-content: center;
+}
+.main-nav .menu {
+  justify-content: center;
+}
+.main-nav .menu li:not(.is-submenu-item) {
+  padding: 0.5em;
+}
+.main-nav ul.accordion-menu {
+  padding-top: 0;
+}
+
+.mobile-nav {
+  color: #fff;
+  padding: 0.5rem 0;
+}
+
+.nsf-logo .cell {
+  position: fixed;
+  top: 0;
+}
+.nsf-logo p {
+  font-size: 0.5rem;
+}
+.nsf-logo img {
+  width: 80px;
+}
+
+.ncar-title {
+  font-size: 10px;
+  font-weight: 700;
+  padding-left: 1.5rem;
+}
+
+.footer-menu-tertiary {
+  margin: 0;
+}
+
+@media only screen and (min-width: 640px) {
+  .top-bar {
+    padding: 1rem 0;
+  }
+}
+@media only screen and (min-width: 900px) {
+  li:hover.is-dropdown-submenu-parent > a::after {
+    top: 135%;
+  }
+  .logo-wrapper h1 {
+    font-size: 3rem;
+  }
+  .ncar-title {
+    font-size: 1rem;
+  }
+}

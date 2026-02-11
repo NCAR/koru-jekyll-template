@@ -1,0 +1,91 @@
+@use "sass:map";
+
+.related-page-section {
+  h3 {
+    @include sentence-case;
+    color: map.get($shared-colors, 'light-gray');
+    font-size: map.get($font-sizes, 'large');
+    font-weight: map.get($font-weights, 'semi-bold');
+    margin-top: 0;
+  }
+
+  p {
+    font-size: map.get($font-sizes, 'small');
+    line-height: 1.5;
+  }
+
+  img {
+    height: 180px;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .figure {
+    padding: 10px;
+  }
+
+  .details,
+  .figure {
+    background: map.get($shared-colors, 'blue');
+  }
+
+  .details {
+    padding: 15px 20px;
+
+    p {
+      color: map.get($shared-colors, 'white');
+    }
+  }
+}
+
+@media only screen and (min-width: map.get($custom-breakpoints, 'medium')) {
+  .related-page-section {
+    img {
+      height: 240px;
+    }
+  }
+}
+
+@media only screen and (min-width: map.get($custom-breakpoints, 'mlarge')) {
+  .related-page-section {
+    h3 {
+      font-size: map.get($font-sizes, 'xlarge');
+    }
+
+    img {
+      min-height: 400px;
+    }
+
+    p {
+      font-size: map.get($font-sizes, 'default');
+    }
+
+    .figure {
+      padding: 15px 0 15px 15px;
+    }
+  }
+
+  .featured-story {
+    .related-page-section {
+      img {
+        height: 100%;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: map.get($custom-breakpoints, 'xxlarge')) {
+  .featured-story {
+    .related-page-section {
+      img {
+        max-height: 400px;
+      }
+    }
+  }
+
+  .related-page-section {
+    h3 {
+      font-size: map.get($font-sizes, 'xxlarge');
+    }
+  }
+}

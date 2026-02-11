@@ -1,0 +1,73 @@
+@use "sass:map";
+
+.members-details-list {
+  dl {
+    &.date {
+      margin-bottom: .15rem;
+
+      dd,
+      dt {
+        display: inline-flex;
+      }
+    }
+  }
+
+  dt {
+    font-size: map.get($font-sizes, 'xxxxsmall');
+    font-weight: map.get($font-weights, 'semi-bold');
+    margin-bottom: .25rem;
+  }
+
+  h2,
+  h3 {
+    color: map-get($shared-colors, 'blue');
+  }
+
+  h4 {
+    color: map.get($shared-colors, 'blue');
+    font-size: map.get($font-sizes, 'default');
+    margin-bottom: .5rem;
+    margin-top: .35rem;
+  }
+
+  .item-details {
+    border-left-color: map.get($shared-colors, 'yellow');
+    border-left-style: solid;
+    border-left-width: .125rem;
+
+    p {
+      font-size: map.get($font-sizes, 'xsmall');
+      margin: 0;
+    }
+  }
+
+  .item-titles {
+    p {
+      margin: 0;
+    }
+
+    ul {
+      list-style-type: disc;
+      margin-bottom: 0;
+      margin-top: 0;
+
+      a {
+        color: map.get($shared-colors, 'light-gray');
+      }
+    }
+  }
+
+  .row {
+    &.wide {
+      max-width: 87.5rem;
+    }
+  }
+}
+
+@media only screen and (min-width: map.get($custom-breakpoints, 'mlarge')) {
+  .members-details-list {
+    dt {
+      font-size: map.get($font-sizes, 'xxsmall');
+    }
+  }
+}

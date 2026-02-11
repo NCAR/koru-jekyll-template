@@ -1,0 +1,92 @@
+b,
+strong {
+  font-weight: map-get($font-weights, 'semi-bold');
+  letter-spacing: .05em;
+}
+
+blockquote {
+  @include body-large;
+  border: 0;
+  color: map-get($shared-colors, 'space-blue-33');
+
+  p {
+    @include body-large;
+  }
+}
+
+@each $size, $headers in $header-styles {
+  @include breakpoints($size) {
+    @each $header, $array in $headers {
+      #{$header} {
+        font-size: #{map-get($array, 'font-size')};
+        font-weight: #{map-get($array, 'font-weight')};
+      }
+    }
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.05;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol {
+  margin-bottom: .75rem;
+  margin-top: 1rem;
+}
+
+ol,
+ul {
+  margin-bottom: 0;
+  margin-left: 2.5rem;
+  margin-top: 0;
+
+  ul {
+    list-style-type: circle;
+  }
+
+  ul,
+  ol {
+    margin-top: 0;
+    padding-left: .625rem;
+  }
+}
+
+// typography utility classes
+.date {
+  @include uppercase;
+  font-size: map-get($font-sizes, 'xsmall');
+  font-weight: map-get($font-weights, 'regular');
+}
+
+.panel-title {
+  p {
+    @include body-large;
+  }
+}
+
+@media only screen and (min-width: map-get($custom-breakpoints, 'medium')) {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ul,
+  ol {
+    margin-bottom: 1.5rem;
+  }
+}

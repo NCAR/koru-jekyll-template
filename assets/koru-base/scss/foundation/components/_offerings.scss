@@ -1,0 +1,145 @@
+.offerings {
+  h2,
+  h3 {
+    color: map-get($shared-colors, 'blue');
+  }
+
+  &.portraits {
+    .offering {
+      h4 {
+        margin-bottom: 0;
+        margin-top: 0;
+      }
+
+      .details {
+        float: right;
+        width: 65%;
+      }
+
+      .post-image {
+        float: left;
+        width: 30%;
+      }
+    }
+  }
+
+  .cta-link {
+    &::after {
+      border-color: transparent mix(map-get($shared-colors, 'white'), map-get($shared-colors, 'light-gray'), 70%);
+    }
+  }
+
+  .group-listing {
+    @include linear-gradient(bottom, rgba(map-get($shared-colors, 'white'), .5), rgba(map-get($shared-colors, 'white'), 0));
+    padding-top: .9375rem;
+
+    .panel-title {
+      h3 {
+        font-size: map-get($font-sizes, 'large');
+      }
+    }
+  }
+
+  .offering {
+    margin-bottom: 1rem;
+    transition: 200ms ease-in-out;
+
+    h4 {
+      font-size: map-get($font-sizes, 'large');
+
+      a {
+        &:hover,
+        &:active {
+          color: map-get($shared-colors, 'space-blue');
+        }
+      }
+    }
+
+    &:hover {
+      .post-image {
+        &::before {
+          opacity: 1;
+        }
+      }
+    }
+
+    .post-image {
+      display: block;
+      margin-bottom: 1rem;
+      position: relative;
+
+      img {
+        display: block;
+        width: 100%;
+      }
+
+      &::before {
+        @include pseudo-element;
+        border-style: solid;
+        border-width: 14px;
+        height: 100%;
+        opacity: 0;
+        transition: 200ms ease-in-out;
+        width: 100%;
+      }
+    }
+  }
+
+  .panel-title {
+    p {
+      margin-bottom: 2rem;
+    }
+  }
+
+  @media only screen and (min-width: map-get($custom-breakpoints, 'medium')) {
+    &.portraits {
+      .post-image {
+        float: left;
+        width: 30%;
+      }
+
+      .details {
+        float: right;
+        width: 65%;
+      }
+    }
+
+    .group-listing {
+      .panel-title {
+        h3 {
+          font-size: map-get($font-sizes, 'xxlarge');
+        }
+      }
+    }
+
+    .offering {
+      .post-image {
+        float: left;
+        width: 45%;
+      }
+
+      .details {
+        float: right;
+        width: 50%;
+      }
+    }
+  }
+
+  @media only screen and (min-width: map-get($custom-breakpoints, 'large')) {
+    &.portraits {
+      .offering {
+        min-height: 290px;
+      }
+    }
+
+    .offering {
+      min-height: 550px;
+
+      .post-image,
+      .details {
+        float: none;
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,155 @@
+table {
+  border: 0;
+
+  ul {
+    list-style-type: none;
+
+    li {
+      list-style-type: none;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+tbody {
+  tr {
+    &:nth-child(even) {
+      background: rgba(map-get($shared-colors, 'light-gray'), .5);
+      border-bottom: 3px solid map-get($shared-colors, 'light-gray');
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+
+tbody,
+thead {
+  background: none;
+  border: 0;
+}
+
+td {
+  border-bottom: 1px solid map-get($shared-colors, 'light-gray');
+  display: block;
+  font-size: map-get($font-sizes, 'xxsmall');
+  text-align: right;
+
+  &::before {
+    @include uppercase;
+    content: attr(data-label);
+    float: left;
+    font-weight: map-get($font-weights, 'bold');
+  }
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+thead {
+  display: none;
+}
+
+tr {
+  background: rgba(map-get($shared-colors, 'light-gray'), .5);
+  border-bottom: 3px solid map-get($shared-colors, 'light-gray');
+  display: block;
+  margin-bottom: .625rem;
+}
+
+@media only screen and (min-width: map-get($custom-breakpoints, 'medium')) {
+  table {
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+
+    ul {
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+  }
+
+  td,
+  th {
+    padding: 10px;
+    vertical-align: top;
+  }
+
+  thead,
+  tbody {
+    tr {
+      &:nth-child(even) {
+        background-color: lighten(map-get($shared-colors, 'light-gray'), 75%);
+      }
+    }
+  }
+
+  tr {
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+
+@media only screen and (min-width: map-get($custom-breakpoints, 'mlarge')) {
+  table {
+    ul {
+      list-style-type: disc;
+
+      li {
+        list-style-type: inherit;
+        margin-bottom: 0;
+      }
+
+      ul {
+        ul {
+          list-style-type: square;
+        }
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-child(even) {
+        border-bottom: 1px solid map-get($shared-colors, 'light-gray');
+      }
+    }
+  }
+
+  td {
+    border: 0;
+    display: table-cell;
+    font-size: map-get($font-sizes, 'default');
+    text-align: left;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  thead,
+  tfoot {
+    tr {
+      background: rgba(map-get($shared-colors, 'light-gray'), .5);
+    }
+  }
+
+  th {
+    @include uppercase;
+    font-size: map-get($font-sizes, 'large');
+    padding: 15px 10px 10px;
+    text-align: left;
+  }
+
+  tr {
+    border-bottom: 1px solid map-get($shared-colors, 'light-gray');
+    display: table-row;
+    margin-bottom: 0;
+  }
+}
