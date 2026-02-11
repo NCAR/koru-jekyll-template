@@ -40,15 +40,19 @@ jobs:
               COMPOSE="docker-compose"
             fi
 
+            UIDGID="$(id -u):$(id -g)"
+
             $COMPOSE build web
 
+            rm -rf vendor/bundle _site
             mkdir -p vendor/bundle
-            $COMPOSE run --rm --no-deps web bundle config set path "vendor/bundle"
-            $COMPOSE run --rm --no-deps web bundle install --jobs 4 --retry 3 --deployment
 
-            rm -rf _site
-            $COMPOSE run --rm --no-deps web bundle exec jekyll clean
-            $COMPOSE run --rm --no-deps web bundle exec jekyll build --baseurl "/koru-jekyll-template"
+            $COMPOSE run --rm --no-deps --user "$UIDGID" web bundle config set --local path "vendor/bundle"
+            $COMPOSE run --rm --no-deps --user "$UIDGID" web bundle config set --local deployment "true"
+            $COMPOSE run --rm --no-deps --user "$UIDGID" web bundle _2.5.6_ install --jobs 4 --retry 3
+
+            $COMPOSE run --rm --no-deps --user "$UIDGID" web bundle _2.5.6_ exec jekyll clean
+            $COMPOSE run --rm --no-deps --user "$UIDGID" web bundle _2.5.6_ exec jekyll build --baseurl "/koru-jekyll-template"
 
             test -d _site
             test -f _site/index.html
@@ -76,30 +80,4 @@ jobs:
             rm -rf .worktree-gh-pages
             mkdir -p .worktree-gh-pages
 
-            if git show-ref --verify --quiet refs/remotes/origin/gh-pages; then
-              git worktree add .worktree-gh-pages origin/gh-pages
-            else
-              git worktree add -B gh-pages .worktree-gh-pages
-              (cd .worktree-gh-pages && git checkout --orphan gh-pages && git rm -rf . || true)
-            fi
-
-            rsync -a --delete _site/ .worktree-gh-pages/
-            cd .worktree-gh-pages
-            touch .nojekyll
-
-            if git status --porcelain | grep -q .; then
-              git add -A
-              git commit -m "Deploy to GitHub Pages [skip-ci]"
-              git push origin gh-pages
-            else
-              echo "No changes to deploy."
-            fi
-
-workflows:
-  deploy:
-    jobs:
-      - build-and-deploy-gh-pages:
-          context: web-modernization
-          filters:
-            branches:
-              only: master
+            if git show-ref --verify
