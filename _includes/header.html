@@ -1,0 +1,52 @@
+<header role="banner">
+    <div data-sticky-container="" class="sticky-container">
+        <div data-sticky="" data-options="marginTop:0;stickyOn:small;" data-top-anchor="main-content"
+             class="sticky is-anchored is-at-top">
+            <div class="top-bar align-top hide-for-print" id="top-bar">
+                <div class="grid-x align-center">
+                    <div class="cell large-9">
+                        <div class="grid-x align-middle">
+                            <div class="cell small-3">
+                              <div class="acronym-wrapper">
+                                <a href="https://ncar.ucar.edu" title="NCAR Home">
+                                  <img src="{{ site.github.baseurl }}{{ 'assets/koru-base/img/logo-ncar.png' | relative_url }}"
+                                       alt="NCAR logo">
+                                  <span class="show-for-sr">NCAR</span>
+                                </a>
+                              </div>
+                            </div>
+                            <div class="cell small-6 top-bar-title align-center align-middle text-center">
+                                <div class="site-name"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-nav hide-for-print text-center bg-blue" data-responsive-toggle="main-nav" data-hide-for="mlarge">
+                <div class="title-bar-title">Menu</div>
+                <button class="fa-solid fa-chevron-down" type="button" data-toggle="main-nav"></button>
+            </div>
+            <div class="main-nav hide-for-print" id="main-nav">
+                <div class="grid-x align-center bg-blue">
+                <nav class="cell center mlarge-10 large-9">
+                    <ul class="menu icons icon-left" data-responsive-menu="accordion mlarge-dropdown">
+                        {% for link in site.data.mainmenu.menu %}
+                        <li aria-label="{{ link.title }}">
+                            <a class="text-center" href="{{ link.url | relative_url }}">{{ link.title }}</a>
+                            {% if link.submenu %}
+                            <ul class="menu">
+                                <li aria-label="{{ link.title }}"><a class="text-center" href="{{ link.url | relative_url }}">Overview</a></li>
+                                {% for sublink in link.submenu %}
+                                <li aria-label="{{ sublink.title }}"><a class="text-left" href="{{ sublink.url | relative_url }}">{{ sublink.title }}</a></li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
