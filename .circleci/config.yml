@@ -81,18 +81,18 @@ jobs:
 
             git fetch origin gh-pages || true
 
-            rm -rf .worktree-gh-pages
-            mkdir -p .worktree-gh-pages
+            WORKTREE="/tmp/gh-pages-worktree"
+            rm -rf "$WORKTREE"
 
             if git show-ref --verify --quiet refs/remotes/origin/gh-pages; then
-              git worktree add .worktree-gh-pages origin/gh-pages
+              git worktree add "$WORKTREE" origin/gh-pages
             else
-              git worktree add -B gh-pages .worktree-gh-pages
-              (cd .worktree-gh-pages && git checkout --orphan gh-pages && git rm -rf . || true)
+              git worktree add -B gh-pages "$WORKTREE"
+              (cd "$WORKTREE" && git checkout --orphan gh-pages && git rm -rf . || true)
             fi
 
-            rsync -a --delete _site/ .worktree-gh-pages/
-            cd .worktree-gh-pages
+            rsync -a --delete _site/ "$WORKTREE"/
+            cd "$WORKTREE"
             touch .nojekyll
 
             if git status --porcelain | grep -q .; then
