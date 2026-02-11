@@ -98,7 +98,7 @@ jobs:
             if git status --porcelain | grep -q .; then
               git add -A
               git commit -m "Deploy to GitHub Pages [skip-ci]"
-              git push origin gh-pages
+              git push origin HEAD:gh-pages
             else
               echo "No changes to deploy."
             fi
