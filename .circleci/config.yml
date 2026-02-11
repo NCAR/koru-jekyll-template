@@ -47,8 +47,10 @@ jobs:
             rm -rf vendor/bundle _site
             mkdir -p vendor/bundle
 
-            $COMPOSE run --rm --no-deps --user "$UIDGID" web bundle config set --local path "vendor/bundle"
-            $COMPOSE run --rm --no-deps --user "$UIDGID" web bundle config set --local deployment "true"
+            $COMPOSE run --rm --no-deps --user "$UIDGID" web gem install bundler -v 2.5.6
+
+            $COMPOSE run --rm --no-deps --user "$UIDGID" web bundle _2.5.6_ config set --local path "vendor/bundle"
+            $COMPOSE run --rm --no-deps --user "$UIDGID" web bundle _2.5.6_ config set --local deployment "true"
             $COMPOSE run --rm --no-deps --user "$UIDGID" web bundle _2.5.6_ install --jobs 4 --retry 3
 
             $COMPOSE run --rm --no-deps --user "$UIDGID" web bundle _2.5.6_ exec jekyll clean
