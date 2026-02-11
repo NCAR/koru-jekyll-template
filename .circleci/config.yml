@@ -2,8 +2,8 @@ version: 2.1
 
 jobs:
   build-and-deploy-gh-pages:
-    docker:
-      - image: cimg/base:stable
+    machine:
+      image: ubuntu-2204:current
     resource_class: medium
     working_directory: ~/project
     steps:
@@ -18,13 +18,10 @@ jobs:
             fi
 
       - run:
-          name: Install dependencies (git, rsync)
+          name: Install dependencies
           command: |
             sudo apt-get update
             sudo apt-get install -y git rsync
-
-      - setup_remote_docker:
-          version: docker24
 
       - run:
           name: "Build site via docker-compose (service: web)"
@@ -34,11 +31,11 @@ jobs:
             if docker compose version >/dev/null 2>&1; then
               COMPOSE="docker compose"
             else
+              sudo apt-get install -y docker-compose
               COMPOSE="docker-compose"
             fi
 
             $COMPOSE build web
-
             rm -rf _site
             $COMPOSE run --rm --no-deps web bundle exec jekyll clean
             $COMPOSE run --rm --no-deps web bundle exec jekyll build --baseurl "/koru-jekyll-template"
