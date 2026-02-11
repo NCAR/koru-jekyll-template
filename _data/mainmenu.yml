@@ -1,12 +1,12 @@
 menu:
   - title: Layouts
-    url: /pages/layouts.html
+    url: pages/layouts.html
     submenu:
       - title: Submenu Item
-        url: /pages/submenu.html
+        url: pages/submenu.html
   - title: Updating the Main Menu
-    url: /pages/main-menu.html
+    url: pages/main-menu.html
   - title: Local Development
-    url: /pages/local-development.html
+    url: pages/local-development.html
   - title: Support
-    url: /pages/support.html
+    url: pages/support.html
