@@ -23,6 +23,11 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y git rsync
 
+      - restore_cache:
+          keys:
+            - v1-bundle-{{ checksum "Gemfile.lock" }}
+            - v1-bundle-
+
       - run:
           name: "Build site via docker-compose (service: web)"
           command: |
@@ -36,12 +41,22 @@ jobs:
             fi
 
             $COMPOSE build web
+
+            mkdir -p vendor/bundle
+            $COMPOSE run --rm --no-deps web bundle config set path "vendor/bundle"
+            $COMPOSE run --rm --no-deps web bundle install --jobs 4 --retry 3
+
             rm -rf _site
             $COMPOSE run --rm --no-deps web bundle exec jekyll clean
             $COMPOSE run --rm --no-deps web bundle exec jekyll build --baseurl "/koru-jekyll-template"
 
             test -d _site
             test -f _site/index.html
+
+      - save_cache:
+          key: v1-bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
 
       - run:
           name: Configure git + authenticated origin
