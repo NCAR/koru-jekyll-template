@@ -44,7 +44,7 @@ jobs:
 
             mkdir -p vendor/bundle
             $COMPOSE run --rm --no-deps web bundle config set path "vendor/bundle"
-            $COMPOSE run --rm --no-deps web bundle install --jobs 4 --retry 3
+            $COMPOSE run --rm --no-deps web bundle install --jobs 4 --retry 3 --deployment
 
             rm -rf _site
             $COMPOSE run --rm --no-deps web bundle exec jekyll clean
