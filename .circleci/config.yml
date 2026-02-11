@@ -1,0 +1,100 @@
+# .circleci/config.yml
+version: 2.1
+
+jobs:
+  build-and-deploy-gh-pages:
+    docker:
+      - image: cimg/base:stable
+    working_directory: ~/project
+    steps:
+      - checkout
+
+      - run:
+          name: Skip CI?
+          command: |
+            msg="$(git log -1 --pretty=%B)"
+            if [[ "$msg" == *"[skip-ci]"* ]]; then
+              circleci step halt
+            fi
+
+      - run:
+          name: Install dependencies (git, rsync)
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y git rsync
+
+      - setup_remote_docker:
+          version: docker24
+
+      - run:
+          name: "Build site via docker-compose (service: web)"
+          command: |
+            set -euo pipefail
+
+            if docker compose version >/dev/null 2>&1; then
+              COMPOSE="docker compose"
+            else
+              COMPOSE="docker-compose"
+            fi
+
+            $COMPOSE up --build -d
+            $COMPOSE exec -T web bundle exec jekyll clean
+            $COMPOSE exec -T web bundle exec jekyll build --baseurl "/koru-jekyll-template"
+            rm -rf _site
+            $COMPOSE cp web:/project/_site ./_site
+            $COMPOSE down -v
+
+            test -d _site
+            test -f _site/index.html
+
+      - run:
+          name: Configure git + authenticated origin
+          command: |
+            set -euo pipefail
+            git config --global user.email "${GITHUB_USER_EMAIL}"
+            git config --global user.name "${GITHUB_USER_NAME}"
+
+            git remote set-url origin "https://x-access-token:${GITHUB_ACCESS_TOKEN}@github.com/NCAR/koru-jekyll-template.git"
+
+      - run:
+          name: Publish _site to gh-pages
+          command: |
+            set -euo pipefail
+
+            git fetch origin gh-pages || true
+
+            rm -rf .worktree-gh-pages
+            mkdir -p .worktree-gh-pages
+
+            if git show-ref --verify --quiet refs/remotes/origin/gh-pages; then
+              git worktree add .worktree-gh-pages origin/gh-pages
+            else
+              git worktree add -B gh-pages .worktree-gh-pages
+              (
+                cd .worktree-gh-pages
+                git checkout --orphan gh-pages
+                git rm -rf . || true
+              )
+            fi
+
+            rsync -a --delete _site/ .worktree-gh-pages/
+            cd .worktree-gh-pages
+
+            touch .nojekyll
+
+            if git status --porcelain | grep -q .; then
+              git add -A
+              git commit -m "Deploy to GitHub Pages [skip-ci]"
+              git push origin gh-pages
+            else
+              echo "No changes to deploy."
+            fi
+
+workflows:
+  deploy:
+    jobs:
+      - build-and-deploy-gh-pages:
+          context: web-modernization
+          filters:
+            branches:
+              only: master
