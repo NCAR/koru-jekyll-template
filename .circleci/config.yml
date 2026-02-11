@@ -66,41 +66,30 @@ jobs:
             - vendor/gems
 
       - run:
-          name: Configure git + authenticated origin
-          command: |
-            set -euo pipefail
-            git config --global user.email "${GITHUB_USER_EMAIL}"
-            git config --global user.name "${GITHUB_USER_NAME}"
-            git remote set-url origin "https://x-access-token:${GITHUB_ACCESS_TOKEN}@github.com/NCAR/koru-jekyll-template.git"
-
-      - run:
           name: Publish _site to gh-pages
           command: |
             set -euo pipefail
 
-            git fetch origin gh-pages || true
+            test -d _site
+            test -f _site/index.html
 
-            WORKTREE="/tmp/gh-pages-worktree"
-            rm -rf "$WORKTREE"
+            DEPLOY_DIR="/tmp/gh-pages-deploy"
+            rm -rf "$DEPLOY_DIR"
+            mkdir -p "$DEPLOY_DIR"
 
-            if git show-ref --verify --quiet refs/remotes/origin/gh-pages; then
-              git worktree add "$WORKTREE" origin/gh-pages
-            else
-              git worktree add -B gh-pages "$WORKTREE"
-              (cd "$WORKTREE" && git checkout --orphan gh-pages && git rm -rf . || true)
-            fi
+            rsync -a --delete _site/ "$DEPLOY_DIR"/
+            touch "$DEPLOY_DIR/.nojekyll"
 
-            rsync -a --delete --exclude ".git" _site/ "$WORKTREE"/
-            cd "$WORKTREE"
-            touch .nojekyll
+            cd "$DEPLOY_DIR"
+            git init
+            git config user.email "${GITHUB_USER_EMAIL}"
+            git config user.name "${GITHUB_USER_NAME}"
+            git add -A
+            git commit -m "Deploy to GitHub Pages [skip-ci]"
 
-            if git status --porcelain | grep -q .; then
-              git add -A
-              git commit -m "Deploy to GitHub Pages [skip-ci]"
-              git push origin HEAD:gh-pages
-            else
-              echo "No changes to deploy."
-            fi
+            git branch -M gh-pages
+            git remote add origin "https://x-access-token:${GITHUB_ACCESS_TOKEN}@github.com/NCAR/koru-jekyll-template.git"
+            git push -f origin gh-pages
 
 workflows:
   deploy:
