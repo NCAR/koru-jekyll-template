@@ -1,10 +1,10 @@
-# .circleci/config.yml
 version: 2.1
 
 jobs:
   build-and-deploy-gh-pages:
     docker:
       - image: cimg/base:stable
+    resource_class: medium
     working_directory: ~/project
     steps:
       - checkout
@@ -37,12 +37,11 @@ jobs:
               COMPOSE="docker-compose"
             fi
 
-            $COMPOSE up --build -d
-            $COMPOSE exec -T web bundle exec jekyll clean
-            $COMPOSE exec -T web bundle exec jekyll build --baseurl "/koru-jekyll-template"
+            $COMPOSE build web
+
             rm -rf _site
-            $COMPOSE cp web:/project/_site ./_site
-            $COMPOSE down -v
+            $COMPOSE run --rm --no-deps web bundle exec jekyll clean
+            $COMPOSE run --rm --no-deps web bundle exec jekyll build --baseurl "/koru-jekyll-template"
 
             test -d _site
             test -f _site/index.html
@@ -53,7 +52,6 @@ jobs:
             set -euo pipefail
             git config --global user.email "${GITHUB_USER_EMAIL}"
             git config --global user.name "${GITHUB_USER_NAME}"
-
             git remote set-url origin "https://x-access-token:${GITHUB_ACCESS_TOKEN}@github.com/NCAR/koru-jekyll-template.git"
 
       - run:
@@ -70,16 +68,11 @@ jobs:
               git worktree add .worktree-gh-pages origin/gh-pages
             else
               git worktree add -B gh-pages .worktree-gh-pages
-              (
-                cd .worktree-gh-pages
-                git checkout --orphan gh-pages
-                git rm -rf . || true
-              )
+              (cd .worktree-gh-pages && git checkout --orphan gh-pages && git rm -rf . || true)
             fi
 
             rsync -a --delete _site/ .worktree-gh-pages/
             cd .worktree-gh-pages
-
             touch .nojekyll
 
             if git status --porcelain | grep -q .; then
