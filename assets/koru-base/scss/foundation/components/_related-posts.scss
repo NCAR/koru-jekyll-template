@@ -1,0 +1,76 @@
+@use "sass:map";
+
+.related-posts {
+  &.related-links {
+    a {
+      border: 0;
+    }
+  }
+
+  a {
+    display: block;
+    outline: none;
+    position: relative;
+  }
+
+  h3 {
+    color: map.get($shared-colors, 'blue');
+  }
+
+  h4 {
+    @include sentence-case;
+    bottom: 0;
+    color: map.get($shared-colors, 'white');
+    font-size: map.get($font-sizes, 'default');
+    font-weight: map.get($font-weights, 'regular');
+    left: 0;
+    letter-spacing: .05em;
+    margin: 0;
+    padding-top: 14px;
+    position: absolute;
+    width: 100%;
+
+    i {
+      font-size: 80%;
+    }
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .featured-post {
+    h4 {
+      font-size: map.get($font-sizes, 'large');
+      font-weight: map.get($font-weights, 'semi-bold');
+    }
+  }
+}
+
+@media only screen and (min-width: map.get($custom-breakpoints, 'mlarge')) {
+  .related-posts {
+    a {
+      border-width: 14px;
+    }
+
+    .last-post {
+      margin-top: 0;
+    }
+
+    .featured-post {
+      h4 {
+        font-size: map.get($font-sizes, 'xlarge');
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: map.get($custom-breakpoints, 'xlarge')) {
+  .related-posts {
+    .featured-post {
+      h4 {
+        font-size: map.get($font-sizes, 'xxlarge');
+      }
+    }
+  }
+}

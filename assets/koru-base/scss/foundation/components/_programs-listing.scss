@@ -1,0 +1,60 @@
+@use "sass:map";
+
+.programs-listing {
+  background-color: map.get($shared-colors, 'space-blue');
+
+  h3,
+  h4 {
+    color: map.get($shared-colors, 'yellow');
+  }
+
+  h4 {
+    @include sentence-case;
+    font-size: map.get($font-sizes, 'large');
+    font-weight: map.get($font-weights, 'bold');
+    letter-spacing: .05em;
+    margin-bottom: .25em;
+  }
+
+  p {
+    color: map.get($shared-colors, 'white');
+  }
+
+  .panel-title {
+    h4 {
+      color: map.get($shared-colors, 'yellow');
+    }
+  }
+
+  .program-listing {
+    .cta-link {
+      margin-top: 1.5rem;
+    }
+
+    p {
+      font-size: map.get($font-sizes, 'xsmall');
+      font-weight: map.get($font-weights, 'semi-bold');
+      letter-spacing: .05em;
+      line-height: 1.7;
+      margin: 0;
+    }
+  }
+
+  @media only screen and (min-width: map.get($custom-breakpoints, 'mlarge')) {
+    h4 {
+      font-size: map.get($font-sizes, 'xlarge');
+    }
+  }
+
+  @media only screen and (min-width: map.get($custom-breakpoints, 'large')) {
+    .panel-title {
+      padding-right: 3rem;
+    }
+  }
+
+  @media only screen and (min-width: map.get($custom-breakpoints, 'xlarge')) {
+    h4 {
+      font-size: map.get($font-sizes, 'xxlarge');
+    }
+  }
+}

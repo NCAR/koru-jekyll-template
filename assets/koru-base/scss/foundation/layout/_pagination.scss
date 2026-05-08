@@ -1,0 +1,14 @@
+.pagination {
+  li {
+    @include uppercase;
+    font-weight: map-get($font-weights, 'semi-bold');
+  }
+}
+
+@media only screen and (min-width: map-get($custom-breakpoints, 'mlarge')) {
+  .pagination {
+    li {
+      font-size: map-get($font-sizes, 'default');
+    }
+  }
+}

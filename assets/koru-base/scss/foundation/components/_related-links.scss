@@ -1,0 +1,69 @@
+@use "sass:map";
+
+.related-links {
+  padding: 1.5rem;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: map-get($shared-colors, 'yellow');
+    font-size: map-get($font-sizes, 'large');
+    font-weight: map-get($font-weights, 'semi-bold');
+    margin-bottom: .75rem;
+    margin-top: 0;
+  }
+
+  li {
+    border-bottom: solid 1px map-get($shared-colors, 'space-blue');
+    font-family: map-get($font-families, 'default'); //icomoon override
+
+    &:last-child {
+      border: 0;
+
+      a {
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+    }
+
+    a {
+      color: map-get($shared-colors, 'white');
+      font-size: map-get($font-sizes, 'xsmall');
+      font-weight: map.get($font-weights, 'semi-bold');
+      letter-spacing: .06rem;
+      padding-left: 0;
+      padding-right: 0;
+      text-transform: uppercase;
+
+      &:link,
+      &:visited {
+        color: map-get($shared-colors, 'white');
+      }
+    }
+
+    i {
+      padding-right: 1rem;
+    }
+
+    .inner {
+      -webkit-font-smoothing: initial; // sass-lint:disable-line no-vendor-prefixes
+      line-height: 1.46;
+
+      p {
+        margin: 0;
+      }
+
+      cite {
+        @include uppercase;
+        font-size: map-get($font-sizes, 'xsmall');
+        font-style: normal;
+        font-weight: map-get($font-weights, 'regular');
+        line-height: 1.2;
+        padding: .5rem 0;
+      }
+    }
+  }
+}

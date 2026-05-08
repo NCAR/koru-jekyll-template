@@ -1,0 +1,83 @@
+.banner {
+  &-gradient {
+    padding: 1.5rem 0;
+  }
+
+  &.with-image {
+    h1,
+    h2 {
+      @include text-shadow(rgba(map-get($shared-colors, 'black'), .5));
+    }
+
+    .banner-gradient {
+      background: linear-gradient(0deg, rgba(38, 37, 38, .5) 50%, rgba(38, 37, 38, 0) 100%);
+    }
+  }
+
+  > div {
+    height: 100%;
+  }
+
+  h1 {
+    color: map-get($shared-colors, 'yellow');
+    font-size: map-get($font-sizes, 'large');
+    font-weight: map-get($font-weights, 'semi-bold');
+    margin-bottom: .25rem;
+  }
+
+  h2 {
+    color: map-get($shared-colors, 'light-gray');
+    font-weight: map-get($font-weights, 'bold');
+  }
+
+  h1,
+  h2 {
+    margin: 0;
+  }
+
+  ol,
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .banner-content {
+    margin: auto;
+    max-width: 60rem;
+    padding: 2.5rem 0;
+    transition: opacity 300ms ease-out;
+  }
+}
+
+@media only screen and (min-width: map-get($custom-breakpoints, 'medium')) {
+  .banner-gradient {
+    padding: 3rem 0;
+  }
+}
+
+@media only screen and (min-width: map-get($custom-breakpoints, 'mlarge')) {
+  .banner {
+    h1 {
+      font-size: map-get($font-sizes, 'xxlarge');
+    }
+  }
+}
+
+@media only screen and (min-width: map-get($custom-breakpoints, 'large')) {
+  .banner {
+    &.with-image {
+      .banner-gradient {
+        padding: 5rem 0;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: map-get($custom-breakpoints, 'xxlarge')) {
+  .banner {
+    h2 {
+      font-size: map-get($font-sizes, 'xxxxxxxxlarge');
+    }
+  }
+}

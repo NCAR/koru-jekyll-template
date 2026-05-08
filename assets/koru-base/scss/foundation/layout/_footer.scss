@@ -1,0 +1,218 @@
+@use "sass:map";
+
+footer {
+  background: map-get($shared-colors, 'space-blue');
+  flex-shrink: 0;
+  font-size: map-get($font-sizes, 'xsmall');
+
+  a {
+    font-size: map.get($font-sizes, 'xsmall');
+  }
+
+  h4 {
+    color: map-get($shared-colors, 'yellow');
+    font-size: map-get($font-sizes, 'large');
+  }
+
+  ol,
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  p {
+    color: map-get($shared-colors, 'light-gray');
+  }
+}
+
+.footer-sponsor {
+  background: map-get($shared-colors, 'space-blue-33');
+  padding-bottom: 30px;
+  padding-top: 30px;
+
+  p {
+    color: map-get($shared-colors, 'white');
+    margin: 0;
+  }
+
+  .grid-x {
+    @include flex-align(center);
+  }
+
+  .logo {
+    padding-right: 20px;
+  }
+}
+
+.footer-addresses {
+  width: auto;
+}
+
+.footer-menu-secondary {
+  margin-bottom: 20px;
+  margin-top: 1rem;
+
+  li {
+    margin-bottom: 5px;
+
+    a {
+      @include uppercase;
+      font-weight: map.get($font-weights, 'semi-bold');
+      letter-spacing: .06rem;
+
+      i {
+        padding-right: 5px;
+      }
+    }
+  }
+}
+
+.footer-menu-tertiary {
+  margin-top: 20px;
+
+  li {
+    a {
+      @include uppercase;
+      color: map-get($shared-colors, 'light-gray');
+      font-size: map.get($font-sizes, 'xsmall');
+      font-weight: map.get($font-weights, 'semi-bold');
+      letter-spacing: .06em;
+
+      &:link,
+      &:visited {
+        color: map-get($shared-colors, 'light-gray');
+      }
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  small {
+    font-size: map-get($font-sizes, 'medium');
+    padding-left: .7rem;
+  }
+
+  small,
+  li,
+  ul {
+    color: map-get($shared-colors, 'light-gray');
+  }
+
+  .menu {
+    margin-left: 0;
+  }
+}
+
+.newsletter-signup {
+  width: 80%;
+
+  form {
+    position: relative;
+  }
+
+  input {
+    &[type='email'] {
+      background: map-get($shared-colors, 'white');
+      border: 0;
+      height: 30px;
+      margin: 0;
+      outline: none;
+      width: 70%;
+    }
+
+    &[type='submit'] {
+      @include uppercase;
+      border: 0;
+      color: map-get($shared-colors, 'white');
+      cursor: pointer;
+      font-size: map-get($font-sizes, 'xxxsmall');
+      font-weight: 700;
+      height: 30px;
+      line-height: 1;
+      outline: 0;
+      padding: 0 .3rem;
+      position: absolute;
+      right: 0;
+      text-align: center;
+      top: 0;
+      width: 32%;
+    }
+  }
+
+  label {
+    left: -9999px;
+    position: absolute;
+    top: -9999px;
+  }
+}
+
+.footer-address-postal,
+.footer-address-shipping {
+  display: none;
+}
+
+// foundation medium begins
+@media only screen and (min-width: map-get($custom-breakpoints, 'medium')) {
+  footer {
+    font-size: map-get($font-sizes, 'small');
+
+    .grid-x {
+      @include flex-align(right);
+    }
+  }
+
+  .footer-addresses,
+  .footer-subscribe {
+    text-align: center;
+  }
+
+  .footer-address-postal,
+  .footer-address-shipping {
+    display: block;
+  }
+
+  .footer-menu-secondary {
+    text-align: center;
+
+    li {
+      display: inline-flex;
+      margin-right: 12px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .footer-menu-tertiary {
+    small,
+    .menu {
+      @include menu-direction(horizontal);
+      display: inline-flex;
+    }
+  }
+}
+
+// foundation large begins
+@media only screen and (min-width: map-get($custom-breakpoints, 'large')) {
+  footer {
+    font-size: map-get($font-sizes, 'default');
+  }
+
+  .footer-addresses,
+  .footer-subscribe {
+    text-align: left;
+  }
+
+  .footer-menu-secondary {
+    text-align: left;
+
+    li {
+      display: block;
+      margin-right: 0;
+    }
+  }
+}

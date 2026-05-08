@@ -1,0 +1,211 @@
+.nsf-logo {
+  h1,
+  p {
+    &:first-child {
+      padding-bottom: 5px;
+    }
+  }
+}
+
+.is-stuck {
+  .logo-wrapper {
+    .acronym-main {
+      h1,
+      p {
+        line-height: 1.3;
+      }
+    }
+
+    .nsf-logo {
+      h1 {
+        padding: 0;
+
+        a {
+          &::after {
+            top: 4px;
+          }
+        }
+      }
+
+      p {
+        display: none;
+      }
+    }
+  }
+}
+
+.logo-wrapper {
+  a {
+    color: map-get($shared-colors, 'blue');
+    display: block;
+    outline: none;
+
+    &:hover,
+    &:active {
+      color: map-get($shared-colors, 'space-blue');
+    }
+  }
+
+  h1,
+  p {
+    margin: 0;
+  }
+
+  .acronym-main {
+    h1,
+    p {
+      @include sentence-case;
+      color: map-get($shared-colors, 'space-blue');
+      font-weight: map-get($font-weights, 'semi-bold');
+    }
+  }
+
+  .nsf-logo {
+    border-right: solid 2px map-get($shared-colors, 'space-blue');
+    margin-right: 5px;
+    padding-right: 5px;
+
+    h1,
+    p {
+      a {
+        padding-right: 5px;
+        position: relative;
+
+        &::after {
+          @include pseudo-element;
+          @include button-arrow(transparent map-get($shared-colors, 'space-blue'), 9px 0 9px 9px);
+          display: none;
+          height: 0;
+          right: -12px;
+          top: 0;
+          width: 0;
+        }
+      }
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.mobile-logo {
+  background-color: map-get($shared-colors, 'white');
+  width: 100%;
+
+  .acronym {
+    border-right: solid 2px map-get($shared-colors, 'space-blue');
+    position: relative;
+    width: 14%;
+  }
+
+  .description {
+    @include sentence-case;
+    color: map-get($shared-colors, 'space-blue');
+    font-size: map-get($font-sizes, 'xxxsmall');
+  }
+}
+
+.top-bar {
+  .top-bar-title {
+    display: none;
+  }
+}
+
+.top-bar-wrapper {
+  &.top-bar {
+    ul {
+      &:first-child {
+        background-color: map-get($shared-colors, 'dark-white');
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: map-get($custom-breakpoints, 'mlarge')) {
+  .logo-wrapper {
+    .acronym-main {
+      h1,
+      p {
+        line-height: 1.6;
+      }
+
+      h1 {
+        font-size: map-get($font-sizes, 'xxxsmall');
+      }
+    }
+
+    .nsf-logo {
+      h1,
+      p {
+        a {
+          &::after {
+            top: 1px;
+          }
+        }
+      }
+    }
+  }
+
+  .top-bar {
+    .top-bar-title {
+      @include flex;
+      margin-right: 0;
+    }
+  }
+
+  .top-bar-wrapper {
+    @include xy-grid-container(85rem, 1.875rem);
+  }
+}
+
+@media only screen and (min-width: map-get($custom-breakpoints, 'large')) {
+  .logo-wrapper {
+    .acronym-main {
+      h1,
+      p {
+        line-height: 1.8;
+      }
+
+      h1 {
+        font-size: map-get($font-sizes, 'small');
+      }
+    }
+
+    .nsf-logo {
+      h1,
+      p {
+        a {
+          &::after {
+            top: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: map-get($custom-breakpoints, 'xlarge')) {
+  .is-stuck {
+    .logo-wrapper {
+      .nsf-logo {
+        h1 {
+          a {
+            &::after {
+              top: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .logo-wrapper {
+    .acronym-main {
+      h1,
+      p {
+        font-size: map-get($font-sizes, 'default');
+      }
+    }
+  }
+}

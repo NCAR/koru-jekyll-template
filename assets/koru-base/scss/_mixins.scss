@@ -1,0 +1,74 @@
+@mixin pseudo-element {
+  content: '';
+  position: absolute;
+}
+
+@mixin radial-gradient($inside, $outside) {
+  background: $inside radial-gradient(ellipse at center, $inside 0%, $outside 100%);
+}
+
+@mixin linear-gradient($position, $top, $bottom) {
+  background: $top linear-gradient(to $position, $top 0%, $bottom 100%);
+}
+
+@mixin button-arrow($color, $width) {
+  border-color: $color;
+  border-style: solid;
+  border-width: $width;
+}
+
+@mixin font-awesome {
+  display: inline-block;
+  font: normal normal normal 14px/1 map-get($font-families, 'icons');
+  font-size: inherit;
+  font-weight: 900;
+  text-rendering: auto;
+  transform: translate(0, 0);
+}
+
+@mixin uppercase {
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+@mixin sentence-case {
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+@mixin text-shadow($color) {
+  text-shadow: 0 0 1.875rem $color;
+}
+
+@mixin body-large {
+  @each $size, $font-styles in $body-font-large {
+    @include breakpoints($size) {
+      font-size: #{map-get($font-styles, 'font-size')};
+      line-height: #{map-get($font-styles, 'line-height')};
+    }
+  }
+}
+
+@mixin breakpoints($point) {
+  @each $breakpoint, $size in $custom-breakpoints {
+    @if $point == $breakpoint {
+      @if $breakpoint == 'small' {
+        @content;
+      } @else {
+        @media only screen and (min-width: #{$size}) {
+          @content;
+        }
+      }
+    }
+  }
+}
+
+@mixin themes($theme) {
+  @if $theme != 'ncar' {
+    .#{$theme} {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}

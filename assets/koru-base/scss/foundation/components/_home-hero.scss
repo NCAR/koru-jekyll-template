@@ -1,0 +1,89 @@
+.home-hero {
+  &.banner {
+    &.with-image {
+      @include flex-align(center, middle);
+
+      &.open {
+        height: auto;
+
+        h1,
+        h2 {
+          display: none;
+        }
+
+        .banner-content {
+          margin-top: 60px;
+          max-width: unset;
+          padding: 60px 15px;
+          transition: opacity 100ms ease-in;
+        }
+      }
+
+      p {
+        text-align: left;
+      }
+
+      .grid-x {
+        &:nth-child(2) {
+          width: 94%;
+        }
+      }
+
+      .more {
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+
+        .expand {
+          background: map-get($shared-colors, 'yellow');
+          border: 3px solid map-get($shared-colors, 'yellow');
+          line-height: 2.65rem;
+          max-width: 3rem;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: map-get($custom-breakpoints, 'mlarge')) {
+  .home-hero {
+    &.banner {
+      &.with-image {
+        &.open {
+          .banner-content {
+            padding: 60px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: map-get($custom-breakpoints, 'large')) {
+  .home-hero {
+    &.banner {
+      &.with-image {
+        p {
+          font-size: map-get($font-sizes, 'xlarge');
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: map-get($custom-breakpoints, 'xlarge')) {
+  .home-hero {
+    &.banner {
+      &.with-image {
+        &.open {
+          .banner-content {
+            max-width: 1160px;
+          }
+        }
+
+        p {
+          font-size: map-get($font-sizes, 'xxlarge');
+        }
+      }
+    }
+  }
+}

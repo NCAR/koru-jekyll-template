@@ -1,0 +1,70 @@
+@use "sass:map";
+
+.home-happenings {
+  .related-links {
+    background: transparent;
+    box-shadow: unset;
+
+    a {
+      &:not(.cta-link) {
+        font-size: map.get($font-sizes, 'default');
+        font-weight: map.get($font-weights, 'regular');
+        text-transform: none;
+      }
+    }
+
+    ul {
+      margin-bottom: 1.5rem;
+      max-width: 25.9375rem;
+    }
+  }
+
+  .panel {
+    &.related-page-section {
+      padding-bottom: 0;
+    }
+  }
+
+  .publications {
+    li {
+      a {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+
+  .publications,
+  .front-news {
+    background-color: map.get($shared-colors, 'space-blue');
+    padding: 1.25rem;
+  }
+}
+
+@media only screen and (min-width: map.get($custom-breakpoints, 'mlarge')) {
+  .home-happenings {
+    .figure {
+      height: 25rem;
+    }
+
+    .front-news {
+      &::after {
+        display: none;
+      }
+    }
+
+    .front-news,
+    .publications {
+      padding: 2em;
+    }
+  }
+}
+
+@media only screen and (min-width: map.get($custom-breakpoints, 'large')) {
+  .home-happenings {
+    .front-news,
+    .publications {
+      padding: 3em;
+    }
+  }
+}

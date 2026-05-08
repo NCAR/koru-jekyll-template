@@ -1,0 +1,85 @@
+@use "sass:map";
+
+.related-sections {
+  a {
+    height: 190px;
+  }
+
+  h3 {
+    color: map.get($shared-colors, 'blue');
+  }
+
+  h4 {
+    color: map.get($shared-colors, 'light-gray');
+    font-size: map.get($font-sizes, 'xxxxsmall');
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  i {
+    display: block;
+    font-size: map.get($font-sizes, 'xxxxxxlarge');
+    margin-bottom: 20px;
+  }
+
+  .figure {
+    @include flex;
+    background-color: map.get($shared-colors, 'blue');
+    justify-content: center;
+    padding: 20px;
+
+    &:hover {
+      background-color: map.get($shared-colors, 'space-blue');
+    }
+  }
+
+  .figcaption {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: map.get($custom-breakpoints, 'medium')) {
+  .related-sections {
+    h4 {
+      font-size: map.get($font-sizes, 'default');
+    }
+
+    i {
+      font-size: map.get($font-sizes, 'xxxxxxxlarge');
+    }
+  }
+}
+
+@media only screen and (min-width: map.get($custom-breakpoints, 'mlarge')) {
+  .related-sections {
+    .figcaption {
+      @include flex;
+      background: map.get($shared-colors, 'white');
+      color: map.get($shared-colors, 'black');
+      justify-content: center;
+      padding: 10px;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    .grid-container {
+      margin: 0;
+      max-width: none;
+      padding: 0;
+    }
+  }
+}
+
+@media only screen and (min-width: map.get($custom-breakpoints, 'large')) {
+  .related-sections {
+    a {
+      height: 225px;
+    }
+
+    .figcaption {
+      padding: 20px;
+    }
+  }
+}

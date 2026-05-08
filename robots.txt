@@ -1,0 +1,1 @@
+Sitemap: /koru-jekyll-template/sitemap.xml

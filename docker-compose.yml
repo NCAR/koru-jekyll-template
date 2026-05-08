@@ -1,0 +1,11 @@
+services:
+  web:
+    container_name: koru-jekyll-site
+    image: koru-jekyll-site:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/project
+    ports:
+      - "4004:4004"

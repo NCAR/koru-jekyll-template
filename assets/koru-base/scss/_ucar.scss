@@ -1,0 +1,18 @@
+.ucar {
+  background-image: url('../img/UCAR-Waves-Lines-Only.png');
+  background-position: 150% -10%;
+  background-repeat: repeat-y;
+  background-size: 53%;
+
+  .logo-wrapper {
+    .nsf-logo {
+      h1 {
+        a {
+          &::after {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}

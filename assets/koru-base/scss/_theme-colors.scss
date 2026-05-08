@@ -1,0 +1,383 @@
+@use "sass:map";
+
+@each $theme, $colors in $theme-colors {
+  @include themes($theme) {
+    a {
+      color: map.get($colors, 'base');
+
+      &:hover,
+      &:active {
+        color: map.get($colors, 'light');
+      }
+    }
+
+    .button {
+      background: map.get($colors, 'base');
+      color: map.get($shared-colors, 'light-gray');
+
+      &:hover,
+      &:active {
+        background: map.get($colors, 'light');
+        color: map.get($shared-colors, 'space-blue');
+      }
+    }
+
+    footer {
+      .newsletter-signup {
+        input {
+          &[type='submit'] {
+            background: map.get($colors, 'base');
+
+            &:hover,
+            &:active {
+              background-color: map.get($colors, 'light');
+              color: map.get($shared-colors, 'space-blue');
+            }
+          }
+        }
+      }
+    }
+
+    .banner {
+      background-color: map.get($colors, 'base');
+    }
+
+    .alert-box {
+      a {
+        color: map-get($shared-colors, 'space-blue');
+
+        &:hover,
+        &:active {
+          color: map.get($colors, 'base');
+        }
+      }
+    }
+
+    .cta-link {
+      background-color: map.get($colors, 'base');
+      color: map.get($shared-colors, 'light-gray');
+
+      &:hover {
+        background-color: map.get($colors, 'light');
+        color: map.get($shared-colors, 'space-blue');
+      }
+
+      &.light-button {
+        background-color: map.get($colors, 'light');
+        color: map.get($shared-colors, 'space-blue');
+
+        &:hover {
+          background-color: map.get($colors, 'light-33');
+        }
+      }
+
+      &.transparent {
+        background-color: transparent;
+        border: solid 4px map.get($colors, 'base');
+        color: map.get($colors, 'base');
+
+        &:hover,
+        &:active {
+          border-color: map.get($colors, 'light');
+          color: map.get($colors, 'light');
+        }
+
+        &-light-border {
+          background-color: transparent;
+          border: solid 4px map.get($colors, 'light');
+          color: map.get($colors, 'light');
+
+          &:hover,
+          &:active {
+            border-color: map.get($colors, 'base');
+            color: map.get($colors, 'base');
+          }
+        }
+      }
+    }
+
+    .dropdown {
+      &.menu {
+        > li {
+          &.is-active {
+            > a {
+              color: map.get($colors, 'light');
+            }
+          }
+        }
+      }
+    }
+
+    .featured-section {
+      i {
+        color: map.get($colors, 'light');
+      }
+    }
+
+    .footer-menu-secondary {
+      li {
+        a {
+          color: map.get($colors, 'light');
+
+          &:hover,
+          &:active {
+            color: map.get($colors, 'light-33');
+          }
+        }
+      }
+    }
+
+    .footer-menu-tertiary {
+      li {
+        a {
+          &:hover,
+          &:active {
+            color: map.get($colors, 'light');
+          }
+        }
+      }
+    }
+
+    .footer-sponsor {
+      a {
+        color: map.get($colors, 'light');
+
+        &:hover,
+        &:active {
+          color: map.get($colors, 'light-33');
+        }
+      }
+    }
+
+    .home-hero {
+      h1 {
+        color: map.get($colors, 'light');
+      }
+
+      &.banner {
+        &.with-image {
+          &.open {
+            .banner-content {
+              background: transparentize(map.get($colors, 'base'), .3);
+            }
+          }
+        }
+      }
+    }
+
+    .main-nav {
+      li {
+        &.is-accordion-submenu-parent {
+          &[aria-expanded='true'] {
+            > a {
+              color: map.get($colors, 'light');
+
+              &::after {
+                border-color: map.get($colors, 'light') transparent transparent;
+              }
+            }
+          }
+        }
+      }
+
+      .submenu {
+        li {
+          &:first-child {
+            a {
+              background-color: map.get($colors, 'base');
+
+              &:hover,
+              &:active {
+                background-color: map.get($colors, 'light');
+                color: map.get($shared-colors, 'space-blue');
+              }
+            }
+          }
+
+          &:not(:first-child) {
+            a {
+              &:hover {
+                color: map.get($colors, 'light');
+
+                &::before {
+                  color: map.get($colors, 'light');
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .members-details-list {
+      .item-titles {
+        ul {
+          a {
+            &:hover,
+            &:active {
+              color: map.get($colors, 'base');
+            }
+          }
+        }
+      }
+    }
+
+    .news-archive {
+      color: map.get($colors, 'base');
+    }
+
+    .offerings {
+      .offering {
+        h4 {
+          a {
+            color: map.get($colors, 'base');
+
+            &:link,
+            &:visited {
+              color: map.get($colors, 'base');
+            }
+          }
+        }
+
+        .post-image {
+          &::before {
+            border-color: map.get($colors, 'base');
+          }
+        }
+      }
+    }
+
+    .post-list {
+      .date {
+        color: map.get($colors, 'base');
+      }
+    }
+
+    .related-links {
+      li {
+        a {
+          &:hover,
+          &:active {
+            color: map.get($colors, 'light');
+          }
+        }
+      }
+    }
+
+    .related-posts {
+      a {
+        h4 {
+          background: map.get($colors, 'base');
+        }
+
+        &:hover {
+          border-color: map.get($colors, 'base');
+          text-decoration: underline;
+
+          h4 {
+            background: map.get($colors, 'base');
+          }
+        }
+      }
+
+      h4,
+      h5,
+      h6 {
+        color: map.get($shared-colors, 'white');
+      }
+    }
+
+    .related-sections {
+      i {
+        color: map.get($colors, 'light');
+      }
+    }
+
+    .sidebar {
+      .related-links {
+        background-color: map.get($colors, 'base');
+      }
+    }
+
+    .sidebar-breadcrumb {
+      li {
+        a {
+          &:hover {
+            color: map.get($colors, 'light');
+          }
+        }
+
+        &.active {
+          > a {
+            background: map.get($colors, 'light');
+
+            &:hover {
+              color: map.get($shared-colors, 'space-blue');
+            }
+          }
+        }
+      }
+    }
+
+    .social {
+      a {
+        &:hover {
+          i {
+            color: map.get($colors, 'light');
+          }
+        }
+      }
+    }
+
+    .stay-connected {
+      .newsletter-signup {
+        input {
+          &[type='email'] {
+            &::placeholder {
+              color: map.get($colors, 'base');
+
+              &:hover,
+              &:active {
+                background-color: map.get($colors, 'light');
+                color: map.get($shared-colors, 'space-blue');
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .title-bar {
+      button {
+        @include linear-gradient(bottom, map.get($colors, 'base'), map.get($colors, 'base'));
+      }
+    }
+
+    .top-bar {
+      .accordion-menu {
+        background: map.get($colors, 'base');
+      }
+    }
+
+    .utility-mobile-wrapper {
+      @include linear-gradient(right, map.get($colors, 'base'), map.get($colors, 'base'));
+    }
+
+    .ui-state-active,
+    .ui-widget-content .ui-state-active,
+    ui-widget-header .ui-state-active,
+    a.ui-button:active, .ui-button:active,
+    ui-button.ui-state-active:hover {
+      background-color: map.get($colors, 'base');
+      color: map.get($shared-colors, 'white');
+    }
+
+    .ui-state-active,
+    .ui-widget-content .ui-state-active,
+    ui-widget-header .ui-state-active {
+      &:hover {
+        color: map.get($shared-colors, 'white');
+      }
+    }
+  }
+}

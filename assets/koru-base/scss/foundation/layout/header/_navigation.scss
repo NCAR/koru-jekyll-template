@@ -1,0 +1,366 @@
+@use "sass:map";
+
+header {
+  background-color: map-get($shared-colors, 'white');
+  flex-shrink: 0;
+
+  button {
+    &.fa-solid {
+      color: map-get($shared-colors, 'white');
+      cursor: pointer;
+      padding: 4%;
+    }
+  }
+
+  h1 {
+    font-size: map-get($font-sizes, 'default');
+    line-height: normal;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  .menu {
+    a {
+      font-family: map-get($font-families, 'default'); //icomoon override
+      font-weight: map-get($font-weights, 'semi-bold');
+      letter-spacing: .06rem;
+      text-transform: uppercase;
+    }
+
+    li {
+      a {
+        padding: 8px 20px;
+      }
+
+      i {
+        font-size: map-get($font-sizes, 'xlarge');
+        line-height: .5;
+      }
+    }
+  }
+
+  .mobile-logo {
+    .description {
+      a {
+        color: map-get($shared-colors, 'space-blue');
+      }
+    }
+  }
+
+  .sticky {
+    z-index: 5;
+  }
+}
+
+.dropdown {
+  &.menu {
+    li {
+      a {
+        padding: .7rem;
+      }
+    }
+  }
+}
+
+.fa-fw {
+  width: 1.08em;
+}
+
+.is-accordion-submenu-parent {
+  > a {
+    &::after {
+      left: 1rem;
+    }
+  }
+}
+
+.is-dropdown-submenu {
+  width: 100%;
+}
+
+.is-stuck {
+  background: map-get($shared-colors, 'white');
+  box-shadow: 0 8px 6px -6px rgba(map-get($shared-colors, 'black'), .1);
+  width: 100%;
+}
+
+.main-nav {
+  ul {
+    &.accordion-menu {
+      padding-bottom: 7px;
+      padding-top: 15px;
+    }
+
+    li {
+      &.is-accordion-submenu-parent {
+        &[aria-expanded='true'] {
+          > a {
+            &::after {
+              top: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .menu {
+    li {
+      a {
+        color: map-get($shared-colors, 'light-gray');
+      }
+    }
+  }
+
+  .submenu {
+    background: map-get($shared-colors, 'space-blue');
+    border: 0;
+    padding: 25px;
+
+    li {
+      &:first-child {
+        padding-bottom: 15px;
+
+        a {
+          @include flex-align(center);
+          color: map-get($shared-colors, 'white');
+          font-size: map-get($font-sizes, 'large');
+          font-weight: map-get($font-weights, 'semi-bold');
+          height: 44px;
+          line-height: 1;
+          padding-top: 12px;
+          position: relative;
+          text-align: center;
+          transition: 200ms ease-in-out;
+          width: 80%;
+        }
+
+        p {
+          @include body-large;
+          display: none;
+        }
+      }
+
+      &:not(:first-child) {
+        a {
+          color: map-get($shared-colors, 'white');
+          display: block;
+          font-weight: map-get($font-weights, 'semi-bold');
+          letter-spacing: .06rem;
+          padding: 6px 12px 16px 28px;
+          position: relative;
+
+          &::before,
+          &::after {
+            @include pseudo-element;
+          }
+
+          &::before {
+            @include font-awesome;
+            color: map-get($shared-colors, 'white');
+            content: '\f111';
+            left: 6px;
+            top: 5px;
+          }
+
+          &::after {
+            background: map-get($shared-colors, 'white');
+            height: calc(100% - 12px);
+            left: 12px;
+            top: 20px;
+            width: 2px;
+          }
+
+          &:hover {
+            &::before {
+              content: '\f140'; // fa-bullseye
+            }
+          }
+        }
+      }
+
+      &:last-child {
+        a {
+          padding-bottom: 0;
+
+          &::after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.nav-open {
+  overflow: hidden;
+
+  .top-bar {
+    background: map-get($shared-colors, 'white');
+    height: 100vh;
+    overflow: scroll;
+  }
+}
+
+.site-name {
+  color: map-get($shared-colors, 'blue');
+  font-size: map-get($font-sizes, 'xxlarge');
+  font-weight: map-get($font-weights, 'bold');
+  padding-left: .9375rem;
+}
+
+.title-bar {
+  background: map-get($shared-colors, 'white');
+  padding: 0;
+}
+
+.top-bar {
+  > .grid-x {
+    width: 100%;
+  }
+}
+
+.top-bar-menus {
+  background-color: map-get($shared-colors, 'dark-white');
+}
+
+@media only screen and (min-width: map-get($custom-breakpoints, 'mlarge')) {
+  header {
+    a {
+      &.mobile-menu-button {
+        display: none;
+      }
+
+      i {
+        &.fa-solid {
+          display: none;
+        }
+      }
+    }
+
+    .menu {
+      li {
+        position: static;
+
+        a {
+          padding: 6px 11px;
+
+          &::before {
+            @include pseudo-element;
+            bottom: -13px;
+            display: none;
+            height: 0;
+            left: 40%;
+            width: 0;
+          }
+        }
+
+        &:last-child {
+          > a {
+            padding-right: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .main-nav {
+    .menu {
+      li {
+        a {
+          color: map-get($shared-colors, 'light-gray');
+          font-size: map-get($font-sizes, 'xxxsmall');
+          position: relative;
+        }
+
+        .submenu {
+          > li {
+            &:not(:first-child) {
+              > a {
+                &::before {
+                  top: 6px;
+                }
+
+                &::after {
+                  top: 26px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .submenu {
+      box-shadow: 0 8px 6px -6px transparentize(map-get($shared-colors, 'black'), .5);
+
+      &.in-focus {
+        height: auto;
+        max-height: 700px;
+        opacity: 1;
+        padding: 25px;
+      }
+
+      li {
+        margin-left: auto;
+        width: 40%;
+
+        &:first-child {
+          float: left;
+          padding-left: 30px;
+          padding-right: 30px;
+          width: 60%;
+
+          a {
+            color: map-get($shared-colors, 'white');
+            margin-bottom: 1rem;
+          }
+
+          p {
+            color: map-get($shared-colors, 'light-gray');
+            display: inline-flex;
+            font-family: map-get($font-families, 'default'); //icomoon override
+            font-weight: map-get($font-weights, 'bold');
+            letter-spacing: .03em;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: map-get($custom-breakpoints, 'large')) {
+  .main-nav {
+    .menu {
+      li {
+        a {
+          font-size: map-get($font-sizes, 'xsmall');
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: map-get($custom-breakpoints, 'xlarge')) {
+  header {
+    .is-dropdown-submenu {
+      top: 130%;
+    }
+  }
+
+  .main-nav {
+    .submenu {
+      li {
+        &:first-child {
+          p {
+            font-size: map-get($font-sizes, 'xxxlarge');
+          }
+        }
+      }
+    }
+  }
+}

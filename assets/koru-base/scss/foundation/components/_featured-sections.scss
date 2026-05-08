@@ -1,0 +1,56 @@
+@use "sass:map";
+
+.featured-sections {
+  h2,
+  h3 {
+    color: map-get($shared-colors, 'blue');
+  }
+}
+
+.featured-section {
+  @include flex;
+  background-color: map.get($shared-colors, 'blue');
+  justify-content: center;
+  min-height: 10.3125rem;
+
+  &:hover {
+    background-color: map.get($shared-colors, 'space-blue');
+  }
+
+  &.cell {
+    padding: 0;
+  }
+
+  a {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+
+  }
+
+  h4 {
+    color: map.get($shared-colors, 'light-gray');
+    font-size: map.get($font-sizes, 'xxxxsmall');
+    margin-bottom: 0;
+  }
+
+  i {
+    font-size: map.get($font-sizes, 'xxxxlarge');
+  }
+}
+
+@media only screen and (min-width: map.get($custom-breakpoints, 'medium')) {
+  .featured-section {
+    min-height: 13.4375rem;
+
+    h4 {
+      font-size: map.get($font-sizes, 'default');
+    }
+
+    i {
+      font-size: map.get($font-sizes, 'xxxxxxxlarge');
+    }
+  }
+}

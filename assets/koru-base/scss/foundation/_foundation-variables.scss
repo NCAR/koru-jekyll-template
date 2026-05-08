@@ -1,0 +1,50 @@
+@import '../variables';
+
+$breakpoints: (
+  'small': map-get($custom-breakpoints, 'small'),
+  'medium': map-get($custom-breakpoints, 'medium'),
+  'mlarge': map-get($custom-breakpoints, 'mlarge'),
+  'large': map-get($custom-breakpoints, 'large'),
+  'xlarge': map-get($custom-breakpoints, 'xlarge'),
+  'xxlarge': map-get($custom-breakpoints, 'xxlarge'),
+);
+
+$breakpoint-classes: (small medium mlarge large xlarge xxlarge);
+$grid-container: 85rem;
+
+$foundation-palette: (
+  'primary': map-get($shared-colors, 'yellow'),
+  'warning': map-get($shared-colors, 'orange'),
+  'alert': map-get($shared-colors, 'red')
+);
+
+$closebutton-color: map-get($shared-colors, 'black');
+
+$callout-border: none;
+$callout-margin: none;
+$callout-background-fade: 1%;
+
+$accordionmenu-arrow-color: map-get($shared-colors, 'white');
+$dropdownmenu-arrows: false;
+$dropdownmenu-background: none;
+
+$accordionmenu-arrows: false;
+$menu-icon-spacing: .5rem;
+
+$pagination-mobile-items: true;
+$pagination-item-padding: .3rem;
+$pagination-item-background-current: none;
+$pagination-item-color-current: #262526;
+
+$body-antialiased: false;
+
+$header-font-family: map-get($font-families, 'default');
+
+$print-hrefs: false;
+$print-transparent-backgrounds: false;
+
+$responsive-embed-margin-bottom: 0;
+
+$topbar-background: none;
+
+@include foundation-everything;

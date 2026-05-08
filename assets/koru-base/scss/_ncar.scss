@@ -1,0 +1,37 @@
+.ncar {
+  background-image: url('../img/UCAR-Waves-Lines-Only.png');
+  background-position: 150% -10%;
+  background-repeat: repeat-y;
+  background-size: 53%;
+
+  .home-hero {
+    .banner-content {
+      max-width: 85rem;
+
+      h1 {
+        font-size: map-get($font-sizes, 'large');
+      }
+
+      h2 {
+        font-size: map-get($font-sizes, 'xxxxxxxlarge');
+      }
+
+      p {
+        font-size: map-get($font-sizes, 'large');
+      }
+    }
+  ;
+  }
+
+  .logo-wrapper {
+    .nsf-logo {
+      h1 {
+        a {
+          &::after {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}

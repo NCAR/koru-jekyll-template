@@ -1,0 +1,91 @@
+.article-details {
+  h6 {
+    font-size: map-get($font-sizes, 'default');
+    margin-bottom: 0;
+
+    a {
+      color: map-get($shared-colors, 'yellow');
+    }
+  }
+
+  a {
+    .term {
+      color: map-get($shared-colors, 'yellow');
+    }
+
+    &:link,
+    &:visited {
+      .term {
+        color: map-get($shared-colors, 'yellow');
+      }
+    }
+
+    &:hover,
+    &:active {
+      .term {
+        color: map-get($shared-colors, 'yellow');
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .term-list {
+    a {
+      &:only-child,
+      &:last-child {
+        .comma {
+          display: none;
+        }
+      }
+    }
+
+    > span {
+      &:only-child,
+      &:last-child {
+        .comma {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.article-topic {
+  margin-right: .4rem;
+}
+
+.post {
+  h1 {
+    margin-bottom: 0;
+  }
+
+  .date {
+    margin-top: 0;
+  }
+
+  .subtitle {
+    font-size: map-get($font-sizes, 'medium');
+    font-style: italic;
+    line-height: 1.3;
+    margin-top: 0;
+    text-transform: none;
+  }
+}
+
+.post-stamp {
+  margin-top: 1rem;
+  width: 100%;
+
+  .date {
+    font-size: map-get($font-sizes, 'default');
+    font-weight: map-get($font-weights, 'semi-bold');
+  }
+}
+
+@media only screen and (min-width: map-get($custom-breakpoints, 'mlarge')) {
+  .post {
+    h1 {
+      font-size: map-get($font-sizes, 'xxxxxlarge');
+    }
+  }
+}

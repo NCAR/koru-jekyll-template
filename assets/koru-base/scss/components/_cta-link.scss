@@ -1,0 +1,54 @@
+@use "sass:map";
+
+a {
+  &.cta-link {
+    text-decoration: none;
+  }
+}
+
+.cta-link {
+  @include uppercase;
+  color: map.get($shared-colors, 'light-gray');
+  display: inline-block;
+  font-weight: map.get($font-weights, 'semi-bold');
+  padding: 10px 20px;
+  position: relative;
+  transition: 200ms ease-in-out;
+
+  &:hover,
+  &:active {
+    color: map.get($shared-colors, 'space-blue');
+  }
+
+  &.back-button {
+    margin-left: 1rem;
+  }
+
+  &.transparent {
+    background-color: transparent;
+
+    &:hover,
+    &:active {
+      background-color: transparent;
+    }
+
+    &-light-border {
+      background-color: transparent;
+
+      &:hover,
+      &:active {
+        background-color: transparent;
+      }
+    }
+  }
+
+  @media only screen and (min-width: map.get($custom-breakpoints, 'mlarge')) {
+    &.large {
+      font-size: map.get($font-sizes, 'medium');
+
+      &.back-button {
+        margin-left: 1.2rem;
+      }
+    }
+  }
+}
